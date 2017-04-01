@@ -96,8 +96,10 @@ class SOAPMonitor(object):
         gauges = []
         counters = []
 
-        gauges.append((self.endpoint, 'response-time', latency))
-        counters.append((self.endpoint, 'response-time', latency))
+        endpoint_code = self.endpoint.replace(".", "_").replace("//", "").replace("/", "_").replace(":", "_")
+
+        gauges.append((endpoint_code, 'response_time', latency))
+        counters.append((endpoint_code, 'response_time', latency))
 
         metrics = {
             'gauges': gauges,
